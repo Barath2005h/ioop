@@ -1,0 +1,122 @@
+.registration-page {
+    padding: 20px;
+    background-color: #f4f8fb;
+    min-height: 100vh;
+    font-family: var(--font-family);
+}
+
+.reg-header {
+    background: #0089cf;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reg-form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reg-section-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns like screenshot */
+    gap: 15px;
+    row-gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.input-group input,
+.input-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.photo-placeholder {
+    grid-column: 4;
+    /* Place in last column */
+    grid-row: 1 / span 3;
+    /* Span rows */
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    height: 150px;
+    width: 150px;
+    justify-self: center;
+}
+
+.action-bar {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.btn-primary {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-secondary {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* MR Number Field Styling */
+.mr-number-group {
+    grid-column: 1 / span 2;
+}
+
+.mr-input {
+    border: 2px solid #0089cf !important;
+    background-color: #e3f2fd;
+    font-weight: 600;
+    font-size: 1rem !important;
+}
+
+.mr-input:focus {
+    outline: none;
+    border-color: #005f8a !important;
+    box-shadow: 0 0 5px rgba(0, 137, 207, 0.3);
+}

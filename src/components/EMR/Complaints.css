@@ -1,0 +1,200 @@
+.complaints-container {
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 50%, #fff9c4 100%);
+    min-height: 100%;
+}
+
+.section-title {
+    color: #6a1b9a;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ce93d8;
+}
+
+/* Section Box */
+.section-box {
+    background: white;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.section-header {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.header-tag {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.complaints-tag {
+    background: #bbdefb;
+    color: #1565c0;
+}
+
+.ocular-tag {
+    background: #c8e6c9;
+    color: #2e7d32;
+}
+
+.vision-tag {
+    background: #ffecb3;
+    color: #f57f17;
+}
+
+.section-content {
+    padding: 20px;
+}
+
+/* Doctor Info */
+.doctor-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.info-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #7b1fa2;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group.inline {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.form-group.inline label {
+    margin-bottom: 0;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 5px rgba(25, 118, 210, 0.2);
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    resize: vertical;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 5px rgba(25, 118, 210, 0.2);
+}
+
+.form-select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background: white;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #1976d2;
+}
+
+/* Ocular Grid */
+.ocular-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.ocular-column {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+.column-header {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.re-header {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.le-header {
+    background: #fce4ec;
+    color: #c2185b;
+}
+
+/* Summary Section */
+.summary-section {
+    padding: 20px 0;
+}
+
+.btn-print-summary {
+    background: #0089cf;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-print-summary:hover {
+    background: #0077b6;
+}
