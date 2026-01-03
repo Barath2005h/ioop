@@ -19,7 +19,7 @@ function App() {
                     <Route path="/" element={<Login />} />
                     <Route path="/queue" element={<PatientQueue />} />
                     <Route path="/registration" element={<Registration />} />
-                    <Route path="/emr/:patientId" element={<AppLayout><PatientEMR /></AppLayout>} />
+                    <Route path="/emr/:patientId" element={<PatientEMR />} />
                 </Routes>
             </div>
         </PatientProvider>

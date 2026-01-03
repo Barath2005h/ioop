@@ -1,200 +1,324 @@
 .complaints-container {
-    padding: 20px;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 50%, #fff9c4 100%);
-    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--bg-white);
 }
 
-.section-title {
-    color: #6a1b9a;
-    font-size: 1.1rem;
+/* Header */
+.complaints-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    background: #f8f8f8;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.complaints-title {
+    font-size: 15px;
     font-weight: 600;
-    margin: 0 0 20px 0;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ce93d8;
+    color: var(--text-pink);
+}
+
+/* Scroll Area */
+.complaints-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
 }
 
 /* Section Box */
-.section-box {
-    background: white;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-}
-
-.section-header {
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
-}
-
-.header-tag {
-    display: inline-block;
-    padding: 5px 15px;
+.complaints-section-box {
+    border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    padding: 15px;
+    background: var(--bg-white);
+    margin-bottom: 20px;
 }
 
-.complaints-tag {
-    background: #bbdefb;
-    color: #1565c0;
+/* Section Badge Row */
+.section-badge-row {
+    margin-bottom: 10px;
 }
 
-.ocular-tag {
-    background: #c8e6c9;
-    color: #2e7d32;
+.badge-blue {
+    display: inline-block;
+    background: #1a7a7c;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 500;
 }
 
-.vision-tag {
-    background: #ffecb3;
-    color: #f57f17;
+.badge-green {
+    display: inline-block;
+    background: var(--color-success);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 500;
 }
 
-.section-content {
-    padding: 20px;
+.badge-purple {
+    display: inline-block;
+    background: #7b1fa2;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 500;
 }
 
 /* Doctor Info */
 .doctor-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    font-size: 0.85rem;
-    color: #555;
-}
-
-.info-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    background: #7b1fa2;
-    color: white;
-    border-radius: 50%;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 0 0 15px 0;
 }
 
 /* Form Elements */
-.form-group {
+.form-row {
+    display: flex;
+    gap: 15px;
     margin-bottom: 15px;
 }
 
-.form-group.inline {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.form-group {
+    flex: 1;
+    margin-bottom: 15px;
 }
 
 .form-group label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 12px;
+    color: var(--text-primary);
+    margin-bottom: 5px;
     font-weight: 500;
-    color: #333;
-    margin-bottom: 6px;
 }
 
-.form-group.inline label {
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 12px;
+    box-sizing: border-box;
+    background: var(--bg-input);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #43a047;
+    background: var(--bg-white);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Action Row */
+.action-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-add {
+    padding: 6px 20px;
+    background: var(--color-success);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-add:hover {
+    background: #43a047;
+}
+
+.btn-cancel {
+    padding: 6px 20px;
+    background: var(--bg-white);
+    color: var(--text-secondary);
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-cancel:hover {
+    background: #eee;
+}
+
+/* Ocular History Table */
+.ocular-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.ocular-table th {
+    padding: 8px;
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-pink);
+    border-bottom: 1px solid #ddd;
+}
+
+.ocular-table th.col-icon {
+    width: 40px;
+}
+
+.ocular-table th.col-badge {
+    width: 50px;
+}
+
+.ocular-table th.col-year {
+    width: 80px;
+}
+
+.ocular-table th.col-desc {
+    width: 35%;
+}
+
+.ocular-table td {
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: top;
+}
+
+.ocular-table input,
+.ocular-table textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 12px;
+    box-sizing: border-box;
+    background: var(--bg-input);
+}
+
+.ocular-table input:focus,
+.ocular-table textarea:focus {
+    outline: none;
+    border-color: #43a047;
+}
+
+.ocular-table textarea {
+    resize: vertical;
+}
+
+.icon-cell {
+    text-align: center;
+}
+
+.add-icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: #5c6bc0;
+    font-weight: bold;
+}
+
+.add-icon:hover {
+    color: #3f51b5;
+}
+
+/* Saved Data Display */
+.saved-data-display {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.data-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.data-row:last-child {
+    border-bottom: none;
     margin-bottom: 0;
 }
 
-.form-input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ddd;
+.data-row strong {
+    min-width: 150px;
+    color: #333;
+}
+
+.data-row span {
+    color: #555;
+    flex: 1;
+}
+
+.saved-badge {
+    background: #28a745;
+    color: white;
+    padding: 3px 8px;
     border-radius: 4px;
-    font-size: 0.9rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 0.75rem;
+    margin-left: 10px;
 }
 
-.form-input:focus {
-    outline: none;
-    border-color: #1976d2;
-    box-shadow: 0 0 5px rgba(25, 118, 210, 0.2);
-}
-
-.form-textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    resize: vertical;
-    font-family: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.form-textarea:focus {
-    outline: none;
-    border-color: #1976d2;
-    box-shadow: 0 0 5px rgba(25, 118, 210, 0.2);
-}
-
-.form-select {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    background: white;
-    cursor: pointer;
-}
-
-.form-select:focus {
-    outline: none;
-    border-color: #1976d2;
-}
-
-/* Ocular Grid */
-.ocular-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.ocular-column {
-    background: #fafafa;
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px solid #e0e0e0;
-}
-
-.column-header {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin: 0 0 12px 0;
-    padding: 8px 12px;
-    border-radius: 4px;
-}
-
-.re-header {
-    background: #e3f2fd;
-    color: #1565c0;
-}
-
-.le-header {
-    background: #fce4ec;
-    color: #c2185b;
-}
-
-/* Summary Section */
-.summary-section {
-    padding: 20px 0;
-}
-
-.btn-print-summary {
-    background: #0089cf;
+.btn-edit {
+    background: #1e3a5f;
     color: white;
     border: none;
-    padding: 10px 25px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background 0.2s;
+    font-size: 0.85rem;
 }
 
-.btn-print-summary:hover {
-    background: #0077b6;
+.btn-edit:hover {
+    background: #2d4a6f;
+}
+
+.no-data {
+    color: #888;
+    font-style: italic;
+    padding: 10px;
+}
+
+.ocular-display-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.ocular-display-table th,
+.ocular-display-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.ocular-display-table th {
+    background: #1e3a5f;
+    color: white;
+}
+
+.ocular-display-table tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: #666;
 }

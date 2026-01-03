@@ -18,6 +18,15 @@ export const patients = [
         lastVisitDate: '11/12/2025',
         lastClinic: 'RETINA CLINIC',
         status: 'Waiting',
+        allergies: 'Penicillin',
+        conditions: 'Diabetic',
+        visitHistory: [
+            { id: 23, date: '16-Dec-25', location: 'CHN', type: 'Inv', hasInvestigation: true, hasGlaucoma: true },
+            { id: 22, date: '06-Nov-25', location: 'CHN', type: 'Rx', hasRefraction: true, hasGlaucoma: true },
+            { id: 21, date: '22-Jul-25', location: 'CHN', type: 'Gla', hasGlaucoma: true },
+            { id: 20, date: '29-Jan-25', location: 'CHN', type: 'Rx', hasRefraction: true, hasGlaucoma: true },
+            { id: 19, date: '22-Oct-24', location: 'CHN', type: 'Inv', hasInvestigation: true, hasGlaucoma: true }
+        ],
         history: {
             diagnosis: ['BE Corneal foreign Body', 'BE Immature cataract', 'BE Posterior capsular opacification'],
             advice: 'Surgery'
@@ -42,6 +51,13 @@ export const patients = [
         lastVisitDate: '31/07/2024',
         lastClinic: 'RETINA CLINIC',
         status: 'Waiting',
+        allergies: '',
+        conditions: '',
+        visitHistory: [
+            { id: 5, date: '10-Dec-25', location: 'CHN', type: 'Gla', hasGlaucoma: true },
+            { id: 4, date: '15-Sep-25', location: 'CHN', type: 'Rx', hasRefraction: true },
+            { id: 3, date: '01-Aug-25', location: 'CHN', type: 'Inv', hasInvestigation: true }
+        ],
         history: {}
     },
     {
@@ -63,6 +79,12 @@ export const patients = [
         lastVisitDate: '01/08/2024',
         lastClinic: 'RETINA CLINIC',
         status: 'Waiting',
+        allergies: 'Sulfa drugs',
+        conditions: 'Hypertension',
+        visitHistory: [
+            { id: 12, date: '20-Dec-25', location: 'CHN', type: 'Gla', hasGlaucoma: true },
+            { id: 11, date: '18-Nov-25', location: 'CHN', type: 'Rx', hasRefraction: true, hasGlaucoma: true }
+        ],
         history: {}
     }
 ];

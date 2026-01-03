@@ -1,0 +1,19 @@
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+class Config:
+    # Database configuration
+    DB_HOST = os.getenv('DB_HOST', 'localhost')
+    DB_PORT = int(os.getenv('DB_PORT', 3306))
+    DB_USER = os.getenv('DB_USER', 'root')
+    DB_PASSWORD = os.getenv('DB_PASSWORD', '')
+    DB_NAME = os.getenv('DB_NAME', 'emr_database')
+    
+    # Flask configuration
+    FLASK_PORT = int(os.getenv('FLASK_PORT', 5000))
+    FLASK_DEBUG = os.getenv('FLASK_DEBUG', 'True').lower() == 'true'
+
+config = Config()

@@ -1,204 +1,212 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './History.css';
 
-export default function History({ patient }) {
-    const [historyData, setHistoryData] = useState({
-        // Systemic History
-        conditions: [
-            { name: '', duration: '', treatment: '', medication: '', dosage: '' }
-        ],
-        // Refraction
-        spectacleUsage: '',
-        usageDuration: '',
-        typeOfSpectacle: '',
-        lensDetails: '',
-        condition: ''
-    });
+const API_BASE = 'http://localhost:5000';
 
-    const handleChange = (field, value) => {
-        setHistoryData(prev => ({ ...prev, [field]: value }));
+export default function History({ patient }) {
+    const [conditions, setConditions] = useState([]);
+    const [showAddForm, setShowAddForm] = useState(true);
+    const [newCondition, setNewCondition] = useState({
+        name: '', duration: '', treatment: '', medication: '', dosage: ''
+    });
+    const [isEditing, setIsEditing] = useState(true);
+    const [isSaved, setIsSaved] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [savedAt, setSavedAt] = useState(null);
+
+    // Load existing data on mount
+    useEffect(() => {
+        if (patient?.id) {
+            loadData();
+        }
+    }, [patient?.id]);
+
+    const loadData = async () => {
+        try {
+            const response = await fetch(`${API_BASE}/api/patients/${patient.id}/emr/history`);
+            const result = await response.json();
+
+            if (result.exists && result.data) {
+                setConditions(result.data.conditions || []);
+                setIsSaved(true);
+                setIsEditing(false);
+                setSavedAt(result.updated_at || result.created_at);
+            }
+        } catch (error) {
+            console.error('Error loading history data:', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const handleConditionChange = (index, field, value) => {
-        const newConditions = [...historyData.conditions];
-        newConditions[index][field] = value;
-        setHistoryData(prev => ({ ...prev, conditions: newConditions }));
+    const handleSave = async () => {
+        try {
+            const response = await fetch(`${API_BASE}/api/patients/${patient.id}/emr/history`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    data: { conditions },
+                    createdBy: 'Dr. Chris Diana Pius'
+                })
+            });
+
+            if (response.ok) {
+                setIsSaved(true);
+                setIsEditing(false);
+                setSavedAt(new Date().toISOString());
+                alert('History data saved successfully!');
+            }
+        } catch (error) {
+            console.error('Error saving history data:', error);
+            alert('Error saving data. Please try again.');
+        }
+    };
+
+    const handleNewConditionChange = (field, value) => {
+        setNewCondition(prev => ({ ...prev, [field]: value }));
     };
 
     const addCondition = () => {
-        setHistoryData(prev => ({
-            ...prev,
-            conditions: [...prev.conditions, { name: '', duration: '', treatment: '', medication: '', dosage: '' }]
-        }));
+        if (newCondition.name) {
+            setConditions(prev => [...prev, { ...newCondition }]);
+            setNewCondition({ name: '', duration: '', treatment: '', medication: '', dosage: '' });
+            setShowAddForm(false);
+        }
     };
 
-    const currentDate = new Date().toLocaleDateString('en-US', {
-        day: '2-digit', month: 'short', year: 'numeric'
-    });
-    const currentTime = new Date().toLocaleTimeString('en-US', {
-        hour: '2-digit', minute: '2-digit'
-    });
+    const removeCondition = (index) => {
+        setConditions(prev => prev.filter((_, i) => i !== index));
+    };
+
+    const handleEdit = () => {
+        setIsEditing(true);
+    };
+
+    if (loading) {
+        return <div className="history-container"><div className="loading">Loading...</div></div>;
+    }
 
     return (
-        <div className="history-section">
-            <div className="section-header-info">
-                <span>Ms. Kavitha Mari @ {currentDate} {currentTime}</span>
+        <div className="history-container">
+            {/* Header */}
+            <div className="history-header">
+                <span className="history-title">History</span>
+                <span className="history-user-info">
+                    {savedAt ? `Saved @ ${new Date(savedAt).toLocaleString()}` : 'Ms. Kavitha Mari @ Dec 16, 2025 12:48 PM'}
+                </span>
+                {isSaved && !isEditing && (
+                    <button className="btn-edit" onClick={handleEdit}>Edit</button>
+                )}
             </div>
 
-            <h2 className="section-title">History</h2>
+            {/* Scrollable Content */}
+            <div className="history-scroll-area">
+                {/* Systemic History */}
+                <div className="systemic-section">
+                    <h3 className="systemic-title">
+                        Systemic History
+                        {isSaved && <span className="saved-badge">✓ Saved</span>}
+                    </h3>
+                    <p className="doctor-info">Dr. Sheetal R, 22 Jul 2025 03:13 PM (GLAUCOMA CLINIC, CHN)</p>
 
-            {/* Systemic History */}
-            <div className="subsection">
-                <h3 className="subsection-title">Systemic History</h3>
-                <p className="doctor-info">Dr. Sheetal R, 22 Jul 2025 03:13 PM (GLAUCOMA CLINIC, CHN)</p>
+                    {isEditing ? (
+                        <>
+                            <div className="conditions-list">
+                                {conditions.map((cond, index) => (
+                                    <div key={index} className="condition-entry">
+                                        <div className="condition-main">
+                                            <span className="cond-name">{cond.name}</span>
+                                            <span className="cond-info"> - {cond.duration}, {cond.treatment}</span>
+                                        </div>
+                                        {cond.medication && (
+                                            <div className="cond-medication">{cond.medication}</div>
+                                        )}
+                                        {cond.dosage && (
+                                            <div className="cond-dosage">{cond.dosage}</div>
+                                        )}
+                                        <button
+                                            className="cond-remove"
+                                            onClick={() => removeCondition(index)}
+                                        >×</button>
+                                    </div>
+                                ))}
+                            </div>
 
-                {historyData.conditions.map((cond, index) => (
-                    <div key={index} className="condition-form">
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label>Condition</label>
-                                <select
-                                    value={cond.name}
-                                    onChange={(e) => handleConditionChange(index, 'name', e.target.value)}
-                                    className="form-select"
-                                >
-                                    <option value="">Select Condition</option>
-                                    <option value="DIABETES">DIABETES</option>
-                                    <option value="HYPERTENSION">HYPERTENSION</option>
-                                    <option value="ASTHMA">ASTHMA</option>
-                                    <option value="THYROID">THYROID</option>
-                                    <option value="OTHER">OTHER</option>
-                                </select>
+                            {/* Add Form */}
+                            {showAddForm ? (
+                                <div className="add-form-box">
+                                    <div className="form-line">
+                                        <select
+                                            value={newCondition.name}
+                                            onChange={(e) => handleNewConditionChange('name', e.target.value)}
+                                        >
+                                            <option value="">Select Condition</option>
+                                            <option value="DIABETES">DIABETES</option>
+                                            <option value="HYPERTENSION">HYPERTENSION</option>
+                                            <option value="ASTHMA">ASTHMA</option>
+                                            <option value="THYROID">THYROID</option>
+                                            <option value="CARDIAC">CARDIAC</option>
+                                        </select>
+                                        <input
+                                            type="text"
+                                            placeholder="Duration"
+                                            value={newCondition.duration}
+                                            onChange={(e) => handleNewConditionChange('duration', e.target.value)}
+                                        />
+                                        <select
+                                            value={newCondition.treatment}
+                                            onChange={(e) => handleNewConditionChange('treatment', e.target.value)}
+                                        >
+                                            <option value="">Treatment</option>
+                                            <option value="Under Rx">Under Rx</option>
+                                            <option value="Not Under Rx">Not Under Rx</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-line">
+                                        <input
+                                            type="text"
+                                            placeholder="Medication"
+                                            value={newCondition.medication}
+                                            onChange={(e) => handleNewConditionChange('medication', e.target.value)}
+                                        />
+                                        <input
+                                            type="text"
+                                            placeholder="Dosage"
+                                            value={newCondition.dosage}
+                                            onChange={(e) => handleNewConditionChange('dosage', e.target.value)}
+                                            style={{ maxWidth: '80px' }}
+                                        />
+                                        <button className="btn-save" onClick={addCondition}>Add</button>
+                                        <button className="btn-cancel" onClick={() => setShowAddForm(false)}>Cancel</button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <a href="#" className="add-link" onClick={(e) => { e.preventDefault(); setShowAddForm(true); }}>
+                                    + Add Another
+                                </a>
+                            )}
+
+                            <div className="action-row">
+                                <button className="btn-save" onClick={handleSave}>Save History</button>
                             </div>
-                            <div className="form-group">
-                                <label>Duration</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g., 3 years, 4 months"
-                                    value={cond.duration}
-                                    onChange={(e) => handleConditionChange(index, 'duration', e.target.value)}
-                                    className="form-input"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Treatment</label>
-                                <select
-                                    value={cond.treatment}
-                                    onChange={(e) => handleConditionChange(index, 'treatment', e.target.value)}
-                                    className="form-select"
-                                >
-                                    <option value="">Select</option>
-                                    <option value="Under Rx">Under Rx</option>
-                                    <option value="Not Under Rx">Not Under Rx</option>
-                                    <option value="Controlled">Controlled</option>
-                                </select>
-                            </div>
+                        </>
+                    ) : (
+                        <div className="saved-data-display">
+                            {conditions.length > 0 ? (
+                                <div className="conditions-list">
+                                    {conditions.map((cond, index) => (
+                                        <div key={index} className="condition-display">
+                                            <strong>{cond.name}</strong> - {cond.duration}, {cond.treatment}
+                                            {cond.medication && <span> | {cond.medication}</span>}
+                                            {cond.dosage && <span> ({cond.dosage})</span>}
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p className="no-data">No conditions recorded</p>
+                            )}
                         </div>
-                        <div className="form-row medication-row">
-                            <div className="form-group">
-                                <label>Medication Name</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g., TAB.OKAMET 500MG"
-                                    value={cond.medication}
-                                    onChange={(e) => handleConditionChange(index, 'medication', e.target.value)}
-                                    className="form-input"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Dosage</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g., 1-0-1"
-                                    value={cond.dosage}
-                                    onChange={(e) => handleConditionChange(index, 'dosage', e.target.value)}
-                                    className="form-input small"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                ))}
-
-                <button className="add-btn" onClick={addCondition}>+ Add Condition</button>
-            </div>
-
-            {/* Refraction */}
-            <div className="subsection">
-                <h3 className="subsection-title">Refraction</h3>
-
-                <div className="refraction-box">
-                    <h4>Current Spectacles (1)</h4>
-                    <p className="doctor-info">Ms. Kavitha Mari @ Dec 16, 2025 12:48 PM</p>
-
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label>Usage</label>
-                            <select
-                                value={historyData.spectacleUsage}
-                                onChange={(e) => handleChange('spectacleUsage', e.target.value)}
-                                className="form-select"
-                            >
-                                <option value="">Select</option>
-                                <option value="Regular usage">Regular usage</option>
-                                <option value="Occasional usage">Occasional usage</option>
-                                <option value="Not using">Not using</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label>Duration</label>
-                            <input
-                                type="text"
-                                placeholder="e.g., 1 year"
-                                value={historyData.usageDuration}
-                                onChange={(e) => handleChange('usageDuration', e.target.value)}
-                                className="form-input"
-                            />
-                        </div>
-                    </div>
-
-                    <table className="refraction-table">
-                        <tbody>
-                            <tr>
-                                <td className="label">Type of spectacle</td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        placeholder="e.g., Kryptok Bifocal"
-                                        value={historyData.typeOfSpectacle}
-                                        onChange={(e) => handleChange('typeOfSpectacle', e.target.value)}
-                                        className="form-input"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="label">Lens details</td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        placeholder="e.g., Plastic, White"
-                                        value={historyData.lensDetails}
-                                        onChange={(e) => handleChange('lensDetails', e.target.value)}
-                                        className="form-input"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="label">Condition</td>
-                                <td>
-                                    <select
-                                        value={historyData.condition}
-                                        onChange={(e) => handleChange('condition', e.target.value)}
-                                        className="form-select"
-                                    >
-                                        <option value="">Select</option>
-                                        <option value="Good">Good</option>
-                                        <option value="Fair">Fair</option>
-                                        <option value="Poor">Poor</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    )}
                 </div>
             </div>
         </div>

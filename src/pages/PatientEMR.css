@@ -2,19 +2,20 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #e8f0f4;
+    background-color: #fef9e7;
     font-family: var(--font-family);
     overflow: hidden;
 }
 
-/* ========== Header ========== */
+/* Header matching Queue */
 .emr-header {
-    background: linear-gradient(135deg, #0077b6 0%, #0096c7 100%);
-    padding: 8px 15px;
+    background: var(--color-primary);
+    padding: 6px 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-shrink: 0;
+    color: white;
 }
 
 .emr-header .header-left {
@@ -56,7 +57,7 @@
 }
 
 .emr-header .kpi-badge.red {
-    background: #d32f2f;
+    background: var(--color-accent);
     color: white;
     flex-direction: row;
     gap: 5px;
@@ -64,7 +65,7 @@
 
 .emr-header .kpi-badge.highlight {
     background: #fff3e0;
-    border: 1px solid #ff9800;
+    border: 1px solid var(--color-warning);
 }
 
 .emr-header .badge-icon {
@@ -85,7 +86,7 @@
 .emr-header .badge-value {
     font-size: 0.9rem;
     font-weight: bold;
-    color: #0077b6;
+    color: var(--color-header-blue);
 }
 
 .emr-header .user-menu {
@@ -100,48 +101,128 @@
     font-size: 0.8rem;
 }
 
-/* ========== Visit Info Bar ========== */
-.visit-info-bar {
-    background: linear-gradient(135deg, #26c6da 0%, #00acc1 100%);
+/* Patient Info Banner */
+.patient-info-banner {
+    background: linear-gradient(135deg, #1a7a7c 0%, #2d9b9d 100%);
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
     flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.visit-title {
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.close-btn {
-    background: #0089cf;
-    color: white;
-    border: none;
-    padding: 6px 20px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-
-.close-btn:hover {
-    background: #0077b6;
-}
-
-/* ========== Main Content - 3 Columns ========== */
-.emr-main-content {
-    flex: 1;
+.p-details {
     display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.p-main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.p-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.p-meta {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.p-sub {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.p-stats {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.stat-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-badge {
+    width: 28px;
+    height: 28px;
+    background: white;
+    color: #1a7a7c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon-badge.blue {
+    color: var(--color-info);
+}
+
+.icon-badge.green {
+    color: var(--color-success);
+}
+
+.medical-alerts {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.alert-tag {
+    background: #e74c3c;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+}
+
+.alert-tag:nth-child(2) {
+    background: #f39c12;
+}
+
+/* 3-Column Layout */
+.emr-main-content {
+    display: flex;
+    flex: 1;
     overflow: hidden;
+    background: #fef9e7;
 }
 
 /* Visit History Panel - LEFT */
 .visit-history-panel {
-    width: 140px;
-    background: #f0f0f0;
-    border-right: 1px solid #ddd;
+    width: 160px;
+    background: #d4edda;
+    border-right: 1px solid #b8d4be;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -149,12 +230,28 @@
 }
 
 .panel-header {
-    background: #0089cf;
+    background: #1e3a5f;
     color: white;
     padding: 10px;
     font-size: 0.8rem;
     font-weight: 600;
     text-align: center;
+}
+
+.no-visits {
+    padding: 20px 10px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.no-visits p {
+    margin: 5px 0;
+}
+
+.no-visits .first-visit {
+    color: var(--color-success);
+    font-weight: 600;
 }
 
 .visit-item {
@@ -173,7 +270,7 @@
 }
 
 .visit-number {
-    background: #26c6da;
+    background: #1a7a7c;
     color: white;
     padding: 3px 6px;
     border-radius: 3px;
@@ -190,11 +287,11 @@
 
 .visit-date {
     font-weight: 500;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .visit-location {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 0.65rem;
 }
 
@@ -218,7 +315,7 @@
 }
 
 .badge-gla {
-    background: #43a047;
+    background: var(--color-success);
     color: white;
 }
 
@@ -242,7 +339,7 @@
     justify-content: center;
     gap: 6px;
     padding: 12px 8px;
-    background: #f5f5f5;
+    background: var(--bg-light);
     color: #555;
     font-size: 0.75rem;
     cursor: pointer;
@@ -264,11 +361,11 @@
     overflow-y: auto;
 }
 
-/* Sidebar Menu Panel - RIGHT */
+/* Sidebar Menu Panel - RIGHT - Navy Blue */
 .sidebar-menu-panel {
     width: 170px;
-    background: linear-gradient(180deg, #d4e8f2 0%, #c5dce8 100%);
-    border-left: 1px solid #a8c8dc;
+    background: linear-gradient(180deg, #1e3a5f 0%, #162d4a 100%);
+    border-left: 1px solid #0f1f35;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -279,31 +376,31 @@
     justify-content: center;
     gap: 6px;
     padding: 8px;
-    background-color: #b8d4e4;
+    background-color: #1e3a5f;
 }
 
 .dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #92b8cc;
+    background-color: #4a6a8a;
     cursor: pointer;
 }
 
 .dot.active {
-    background-color: #0089cf;
+    background-color: #e8b339;
 }
 
 .sidebar-section {
-    border-bottom: 1px solid #b8d0e0;
+    border-bottom: 1px solid #0f1f35;
 }
 
 .sidebar-item {
     padding: 10px 12px;
-    background-color: #c0d8e8;
+    background-color: #243f5f;
     font-weight: 600;
     font-size: 0.78rem;
-    color: #0066a0;
+    color: #ffffff;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -312,26 +409,27 @@
 }
 
 .sidebar-item:hover {
-    background-color: #b0cce0;
+    background-color: #2d4a6f;
 }
 
 .sidebar-item.active {
-    background-color: #90c0dc;
-    border-left: 3px solid #0089cf;
+    background-color: #e8b339;
+    color: #1e3a5f;
+    border-left: 3px solid #e8b339;
 }
 
 .chevron {
-    color: #666;
+    color: #8aa8c8;
 }
 
 .sub-items {
-    background-color: #d8e8f2;
+    background-color: #1a3350;
 }
 
 .sub-item {
     padding: 8px 12px 8px 20px;
     font-size: 0.75rem;
-    color: #0066a0;
+    color: #c8d8e8;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -340,17 +438,18 @@
 }
 
 .sub-item:hover {
-    background-color: #c8dce8;
+    background-color: #243f5f;
 }
 
 .sub-item.active {
-    background-color: #b0d0e4;
+    background-color: #2d4a6f;
     font-weight: 500;
+    color: #e8b339;
 }
 
 .sidebar-actions {
     padding: 10px;
-    background-color: #c0d8e8;
+    background-color: #1a3350;
     margin-top: auto;
     display: flex;
     flex-direction: column;
@@ -358,7 +457,7 @@
 }
 
 .btn-next-station {
-    background-color: #4fc3f7;
+    background-color: var(--footer-accent);
     color: white;
     border: none;
     padding: 10px;
@@ -377,7 +476,7 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
-    background: linear-gradient(to bottom, #e0e0e0, #c8c8c8);
+    background: linear-gradient(to bottom, var(--border-light), #c8c8c8);
     border: 1px solid #aaa;
     padding: 6px 10px;
     border-radius: 12px;
@@ -387,7 +486,7 @@
 }
 
 .print-count {
-    background-color: #e74c3c;
+    background-color: var(--color-accent);
     color: white;
     font-size: 0.6rem;
     padding: 1px 5px;
@@ -399,7 +498,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(180deg, #37474f 0%, #263238 100%);
+    background: linear-gradient(180deg, #37474f 0%, var(--footer-bg) 100%);
     color: white;
     padding: 8px 20px;
     font-size: 0.75rem;
@@ -416,7 +515,7 @@
 }
 
 .emr-footer .version {
-    color: #90a4ae;
+    color: var(--footer-text);
 }
 
 .emr-footer .footer-right {
@@ -426,7 +525,7 @@
 }
 
 .emr-footer .helpdesk-btn {
-    background: #66bb6a;
+    background: var(--color-success);
     color: white;
     border: none;
     padding: 5px 12px;
@@ -436,7 +535,7 @@
 }
 
 .emr-footer .phone-numbers {
-    color: #4fc3f7;
+    color: var(--footer-accent);
 }
 
 /* Loading */
@@ -445,5 +544,88 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: #666;
+    color: var(--text-secondary);
+}
+
+/* New Visit History Styles */
+.visit-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.visit-item-new {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 8px;
+    border-bottom: 1px solid #b8d4be;
+    cursor: pointer;
+    background: #d4edda;
+}
+
+.visit-item-new:hover {
+    background: #c3e6cb;
+}
+
+.visit-number-box {
+    background: #1e3a5f;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    min-width: 28px;
+    text-align: center;
+}
+
+.visit-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.visit-date-new {
+    font-size: 0.75rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.visit-badges-row {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.visit-badge {
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-weight: 600;
+}
+
+.visit-badge.badge-inv {
+    background: #28a745;
+    color: white;
+}
+
+.visit-badge.badge-rx {
+    background: #28a745;
+    color: white;
+}
+
+.visit-badge.badge-gla {
+    background: #28a745;
+    color: white;
+}
+
+.visit-p-badge {
+    background: #e83e8c;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-top: 2px;
 }

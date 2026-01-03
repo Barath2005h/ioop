@@ -1,19 +1,58 @@
 :root {
-  --color-primary: #0089cf; /* EyeNotes Blue */
-  --color-secondary: #00a0dc;
-  --color-accent: #ff4d4f;
-  
-  --bg-sidebar: #ebf5f9;
-  --bg-header: #e6f7ff;
-  --bg-body: #f5f5f5;
-  --bg-white: #ffffff;
+  /* ============ PRIMARY COLORS ============ */
+  --color-primary: #1a7a7c;
+  /* Teal header color */
+  --color-primary-dark: #156668;
+  /* Darker teal for hover states */
+  --color-secondary: #1a7a7c;
+  /* Same teal for consistency */
+  --color-accent: #d32f2f;
+  /* Red for alerts/warnings */
+  --color-accent-yellow: #e8b339;
+  /* Yellow/Gold for active tabs */
 
+  /* ============ UI COLORS ============ */
+  --color-header-blue: #0077b6;
+  /* Table headers, section headers */
+  --color-success: #43a047;
+  /* Green for success states */
+  --color-warning: #f57c00;
+  /* Orange for warnings */
+  --color-info: #0077b6;
+  /* Info links */
+
+  /* ============ BACKGROUNDS ============ */
+  --bg-page: #fef9e7;
+  /* Cream/off-white page background */
+  --bg-sidebar: #f5f0dc;
+  /* Sidebar cream background */
+  --bg-white: #ffffff;
+  --bg-light: #faf8f3;
+  --bg-input: #fafafa;
+  /* Light gray input fields */
+  --bg-table-alt: #fffde7;
+  /* Alternate table row - light yellow */
+
+  /* ============ FOOTER COLORS ============ */
+  --footer-bg: #37474f;
+  /* Dark footer */
+  --footer-text: #b0bec5;
+  /* Light gray text in footer */
+  --footer-accent: #4fc3f7;
+  /* Cyan phone numbers */
+
+  /* ============ TEXT COLORS ============ */
   --text-primary: #333333;
   --text-secondary: #666666;
   --text-light: #999999;
+  --text-pink: #c2185b;
+  /* Pink for highlights */
 
+  /* ============ BORDERS ============ */
   --border-color: #d9d9d9;
-  
+  --border-light: #e0e0e0;
+
+  /* ============ FONTS ============ */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -25,36 +64,73 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-family);
-  background-color: var(--bg-body);
+  background-color: var(--bg-page);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
 }
 
-input, button, select, textarea {
+input,
+button,
+select,
+textarea {
   font-family: inherit;
 }
 
 /* Utilities */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.w-full { width: 100%; }
-.h-full { height: 100%; }
-.p-4 { padding: 1rem; }
-.m-4 { margin: 1rem; }
-.text-center { text-align: center; }
-.font-bold { font-weight: bold; }
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.m-4 {
+  margin: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-bold {
+  font-weight: bold;
+}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #ccc;
   border-radius: 4px;

@@ -1,17 +1,17 @@
 .layout-container {
     display: flex;
-    flex-direction: row-reverse;
-    /* Reverse to put sidebar on right */
+    flex-direction: row;
+    /* Sidebar on left */
     height: 100%;
-    background-color: #e8f4fc;
+    background-color: var(--bg-page);
     font-family: var(--font-family);
 }
 
-/* Sidebar Styles - Now on RIGHT */
+/* Sidebar Styles - Now on LEFT */
 .layout-sidebar {
     width: 180px;
-    background: linear-gradient(180deg, #d4e8f2 0%, #c5dce8 100%);
-    border-left: 1px solid #a8c8dc;
+    background: linear-gradient(180deg, #1e3a5f 0%, #162d4a 100%);
+    border-right: 1px solid #0f1f35;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -23,20 +23,20 @@
     justify-content: center;
     gap: 6px;
     padding: 8px;
-    background-color: #b8d4e4;
-    border-bottom: 1px solid #a0c4d8;
+    background-color: #1e3a5f;
+    border-bottom: 1px solid #0f1f35;
 }
 
 .dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #92b8cc;
+    background-color: #4a6a8a;
     cursor: pointer;
 }
 
 .dot.active {
-    background-color: #0089cf;
+    background-color: #e8b339;
 }
 
 .sidebar-menu {
@@ -46,25 +46,25 @@
 }
 
 .menu-section {
-    border-bottom: 1px solid #b8d0e0;
+    border-bottom: 1px solid #0f1f35;
 }
 
 .menu-header {
     padding: 8px 12px;
-    background-color: #c0d8e8;
+    background-color: #243f5f;
     font-weight: bold;
     font-size: 0.8rem;
-    color: #0066a0;
+    color: #ffffff;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #a8c4d8;
+    border-bottom: 1px solid #0f1f35;
     transition: background-color 0.15s;
 }
 
 .menu-header:hover {
-    background-color: #b0cce0;
+    background-color: #2d4a6f;
 }
 
 .menu-header.no-items {
@@ -72,8 +72,9 @@
 }
 
 .menu-header.active {
-    background-color: #90c0dc;
-    border-left: 3px solid #0089cf;
+    background-color: #e8b339;
+    color: #1e3a5f;
+    border-left: 3px solid #e8b339;
 }
 
 .menu-title {
@@ -81,39 +82,40 @@
 }
 
 .expand-icon {
-    color: #666;
+    color: #8aa8c8;
 }
 
 .menu-items {
-    background-color: #d8e8f2;
+    background-color: #1a3350;
 }
 
 .menu-item {
     padding: 6px 12px 6px 20px;
     font-size: 0.78rem;
-    color: #0066a0;
+    color: #c8d8e8;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #c8dce8;
+    border-bottom: 1px solid #0f1f35;
     cursor: pointer;
     transition: background-color 0.15s;
 }
 
 .menu-item:hover {
-    background-color: #c8dce8;
+    background-color: #243f5f;
 }
 
 .menu-item.active {
-    background-color: #b0d0e4;
+    background-color: #2d4a6f;
     font-weight: 500;
-    border-left: 3px solid #0089cf;
+    border-left: 3px solid #e8b339;
     padding-left: 17px;
+    color: #e8b339;
 }
 
 .item-chevron {
     margin-right: 4px;
-    color: #888;
+    color: #8aa8c8;
 }
 
 .badge-new {
@@ -128,15 +130,15 @@
 
 .sidebar-actions {
     padding: 10px;
-    background-color: #c0d8e8;
-    border-top: 1px solid #a8c4d8;
+    background-color: #1a3350;
+    border-top: 1px solid #0f1f35;
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
 .btn-next-station {
-    background-color: #4fc3f7;
+    background-color: var(--footer-accent);
     color: white;
     border: none;
     padding: 8px 12px;
@@ -152,7 +154,7 @@
 }
 
 .btn-print {
-    background: linear-gradient(to bottom, #e0e0e0, #c8c8c8);
+    background: linear-gradient(to bottom, var(--border-light), #c8c8c8);
     border: 1px solid #aaa;
     padding: 6px 10px;
     border-radius: 12px;
@@ -171,7 +173,7 @@
 }
 
 .print-badge {
-    background-color: #e74c3c;
+    background-color: var(--color-accent);
     color: white;
     font-size: 0.6rem;
     padding: 1px 5px;
@@ -185,5 +187,5 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background-color: #e8f0f4;
+    background-color: var(--bg-page);
 }
